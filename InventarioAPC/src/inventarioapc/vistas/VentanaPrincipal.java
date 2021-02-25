@@ -23,6 +23,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private inventarioapc.vistas.Empleados empleados;
     private inventarioapc.vistas.Inventario inventario;
     private inventarioapc.vistas.Proveedores proveedor;
+    private inventarioapc.vistas.CrearEmpleado crearEmpleado;
+    private inventarioapc.vistas.CrearProveedor crearProveedor;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -38,9 +40,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         empleados = new inventarioapc.vistas.Empleados();
         inventario = new inventarioapc.vistas.Inventario();
         proveedor = new inventarioapc.vistas.Proveedores();
+        crearEmpleado = new inventarioapc.vistas.CrearEmpleado();
+        crearProveedor = new inventarioapc.vistas.CrearProveedor();
         
         
-        controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor);
+        controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor );
     
         botones1.setControladorVentana(controladorVentanas);
     }
