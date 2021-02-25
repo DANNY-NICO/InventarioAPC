@@ -5,6 +5,9 @@
  */
 package inventarioapc.vistas;
 
+import javax.swing.JDialog;
+import javax.swing.UIManager;
+
 /**
  *
  * @author nicolas
@@ -83,6 +86,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                  try {
+                    VentanaPrincipal.setDefaultLookAndFeelDecorated(true);
+                    JDialog.setDefaultLookAndFeelDecorated(true);
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+                    
+                }
                 new VentanaPrincipal().setVisible(true);
             }
         });
