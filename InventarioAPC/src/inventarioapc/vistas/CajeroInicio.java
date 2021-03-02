@@ -6,12 +6,15 @@
 
 package inventarioapc.vistas;
 
+import inventarioapc.controladores.Ventanas;
+
 /**
  *
  * @author nicolas
  */
 public class CajeroInicio extends javax.swing.JPanel {
 
+    public inventarioapc.controladores.Ventanas controladorNavegacion;
     /** Creates new form Cajero */
     public CajeroInicio() {
         initComponents();
@@ -217,7 +220,7 @@ public class CajeroInicio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        controladorNavegacion.cambioVentana(2);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -242,5 +245,11 @@ public class CajeroInicio extends javax.swing.JPanel {
     private inventarioapc.vistas.Producto producto1;
     // End of variables declaration//GEN-END:variables
     
-    
+    public Ventanas getControladorNavegacion() {
+        return controladorNavegacion;
+    }
+
+    public void setControladorNavegacion(Ventanas controladorNavegacion) {
+        this.controladorNavegacion = controladorNavegacion;
+    }
 }

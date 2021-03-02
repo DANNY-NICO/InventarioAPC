@@ -14,7 +14,11 @@ import javax.swing.UIManager;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    //CONTROLADORES
     private inventarioapc.controladores.Ventanas controladorVentanas;
+    private inventarioapc.controladores.Producto controladorProducto;
+    
+    // VENTANAS
     private inventarioapc.vistas.IniciarSesion iniciarSesion;
     private inventarioapc.vistas.CajeroInicio cajero;
     private inventarioapc.vistas.CajeroFacturaDetalle facturaDetalle;
@@ -45,7 +49,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         
         controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor );
-    
+        controladorProducto = new inventarioapc.controladores.Producto(crearProducto, inventario);
+        
+        //ASIGNACION DE CONTROLADOR DE VENTANAS
+        proveedor.setControladorNavegacion(controladorVentanas);
+        inventario.setControladorNavegacion(controladorVentanas);
+        iniciarSesion.setControladorNavegacion(controladorVentanas);
+        empleados.setControladorNavegacion(controladorVentanas);
+        crearProveedor.setControladorNavegacion(controladorVentanas);
+        crearProducto.setControladorNavegacion(controladorVentanas);
+        crearEmpleado.setControladorNavegacion(controladorVentanas);
+        cajero.setControladorNavegacion(controladorVentanas);
+        facturaDetalle.setControladorNavegacion(controladorVentanas);
+        factura.setControladorNavegacion(controladorVentanas);
+        
         botones1.setControladorVentana(controladorVentanas);
     }
 

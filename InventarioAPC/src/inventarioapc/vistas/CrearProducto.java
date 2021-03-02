@@ -5,12 +5,15 @@
  */
 package inventarioapc.vistas;
 
+import inventarioapc.controladores.Ventanas;
+
 /**
  *
  * @author nicolas
  */
 public class CrearProducto extends javax.swing.JPanel {
 
+    public inventarioapc.controladores.Ventanas controladorNavegacion;
     /**
      * Creates new form CrearProducto
      */
@@ -327,5 +330,13 @@ public class CrearProducto extends javax.swing.JPanel {
     private javax.swing.JTextField txtmarca;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
+
+    public Ventanas getControladorNavegacion() {
+        return controladorNavegacion;
+    }
+
+    public void setControladorNavegacion(Ventanas controladorNavegacion) {
+        this.controladorNavegacion = controladorNavegacion;
+    }
 }
 

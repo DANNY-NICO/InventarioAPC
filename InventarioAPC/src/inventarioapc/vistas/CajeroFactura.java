@@ -5,12 +5,15 @@
  */
 package inventarioapc.vistas;
 
+import inventarioapc.controladores.Ventanas;
+
 /**
  *
  * @author nicolas
  */
 public class CajeroFactura extends javax.swing.JPanel {
 
+    public inventarioapc.controladores.Ventanas controladorNavegacion;
     /**
      * Creates new form CajeroFactura
      */
@@ -103,6 +106,11 @@ public class CajeroFactura extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setText("Aceptar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setText("Cancelar");
@@ -230,6 +238,10 @@ public class CajeroFactura extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        controladorNavegacion.cambioVentana(1);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -254,4 +266,12 @@ public class CajeroFactura extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+    public Ventanas getControladorNavegacion() {
+        return controladorNavegacion;
+    }
+
+    public void setControladorNavegacion(Ventanas controladorNavegacion) {
+        this.controladorNavegacion = controladorNavegacion;
+    }
 }
