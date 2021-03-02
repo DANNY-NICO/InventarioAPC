@@ -17,7 +17,7 @@ public class Ventanas {
     private ArrayList<JPanel> lista;
     private JPanel main;
 
-    public Ventanas(JPanel boton, JPanel inicioSesion, JPanel cajero, JPanel facturaDetalle, JPanel factura, JPanel crearProducto, JPanel empleados, JPanel inventario, JPanel proveedor, JPanel contenedor, JPanel crearEmpleado, JPanel crearProveedor) {
+    public Ventanas(JPanel boton, JPanel inicioSesion, JPanel cajero, JPanel facturaDetalle, JPanel factura, JPanel crearProducto, JPanel empleados, JPanel inventario, JPanel proveedor, JPanel contenedor, JPanel crearEmpleado, JPanel crearProveedor, JPanel administrador) {
         
         //-------------INICIO DE LA LISTA CON LAS VENTANAS----
         lista = new ArrayList<JPanel>();
@@ -31,6 +31,7 @@ public class Ventanas {
         lista.add(proveedor);
         lista.add(crearEmpleado);
         lista.add(crearProveedor);
+        lista.add(administrador);
         
         //------------Frame principal-------------------------
         this.main = contenedor;
@@ -51,6 +52,7 @@ public class Ventanas {
      * 7 = proveedor
      * 8 = crear empleado
      * 9 = crear proveedor
+     * 10 = administrador
      * @param nuevaVentana 
      */
     public void cambioVentana(int nuevaVentana){
@@ -124,6 +126,13 @@ public class Ventanas {
                 main.updateUI();
                 main.repaint();
                 main.add(lista.get(9));
+                break;
+                
+            case 10:
+                main.remove(1);
+                main.updateUI();
+                main.repaint();
+                main.add(lista.get(10));
                 break;
         } 
     }

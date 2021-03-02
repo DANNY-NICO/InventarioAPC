@@ -29,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private inventarioapc.vistas.Proveedores proveedor;
     private inventarioapc.vistas.CrearEmpleado crearEmpleado;
     private inventarioapc.vistas.CrearProveedor crearProveedor;
+    private inventarioapc.vistas.Administrador administrador;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -46,9 +47,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         proveedor = new inventarioapc.vistas.Proveedores();
         crearEmpleado = new inventarioapc.vistas.CrearEmpleado();
         crearProveedor = new inventarioapc.vistas.CrearProveedor();
+        administrador = new inventarioapc.vistas.Administrador();
         
         
-        controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor );
+        controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor, administrador);
         controladorProducto = new inventarioapc.controladores.Producto(crearProducto, inventario);
         
         //ASIGNACION DE CONTROLADOR DE VENTANAS
@@ -62,6 +64,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cajero.setControladorNavegacion(controladorVentanas);
         facturaDetalle.setControladorNavegacion(controladorVentanas);
         factura.setControladorNavegacion(controladorVentanas);
+        administrador.setControladorNavegacion(controladorVentanas);
         
         botones1.setControladorVentana(controladorVentanas);
     }

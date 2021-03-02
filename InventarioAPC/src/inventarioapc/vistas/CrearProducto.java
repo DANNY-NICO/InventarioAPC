@@ -294,6 +294,7 @@ public class CrearProducto extends javax.swing.JPanel {
 
     private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
         agregarProducto();
+        controladorNavegacion.cambioVentana(6);
     }//GEN-LAST:event_agregarProductoActionPerformed
 
     private void txtmarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmarcaActionPerformed
