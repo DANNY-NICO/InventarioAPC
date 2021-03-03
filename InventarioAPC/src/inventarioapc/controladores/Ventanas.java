@@ -62,7 +62,7 @@ public class Ventanas {
     /**
      * Metodo encargado de realizar el cambio entre ventana siguiendo la siguiente tabla de asignacion
      * 
-     * 0 = inicio Sesioin
+     * 0 = inicio Sesion
      * 1 = cajero
      * 2 = facturaDetalle
      * 3 = factura
@@ -76,7 +76,6 @@ public class Ventanas {
      * @param nuevaVentana 
      */
     public void cambioVentana(int nuevaVentana){
-        System.out.println(main.getComponentCount());
         switch( nuevaVentana ){
             case 0:
                 main.remove(1);

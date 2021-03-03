@@ -296,4 +296,6 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
     public void setControladorNavegacion(Ventanas controladorNavegacion) {
         this.controladorNavegacion = controladorNavegacion;
     }
+    
+    
 }

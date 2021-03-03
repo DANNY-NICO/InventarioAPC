@@ -37,18 +37,22 @@ public class Producto {
 
     public void cargarTabla(){
          
+        
+        
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("P. Venta");
         modelo.addColumn("P. Compra");
-        modelo.addColumn("Stock");
+        modelo.addColumn("Stock local");
+        modelo.addColumn("Stock bodega");
         
-        String info[] = new String[5];
+        String info[] = new String[6];
         info[0]="1";
         info[1]="prueba";
         info[2]="intento A";
         info[3]="intento B";
         info[4]="10";
+        info[5]="10";
         
         modelo.addRow(info);
         
