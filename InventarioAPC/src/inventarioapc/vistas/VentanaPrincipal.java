@@ -10,7 +10,10 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
+ * VENTANA DE DESPLIEGUE GENERAL
+ * Vista princiapal actua como Main central, donde inicializamos la mayoria de componentes para que compartan direcciones
+ * 
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -18,6 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private inventarioapc.controladores.Ventanas controladorVentanas;
     private inventarioapc.controladores.Producto controladorProducto;
     private inventarioapc.controladores.Personas controladorPersonas;
+    private inventarioapc.controladores.Cajero controladorCajero;
     
     // VENTANAS
     private inventarioapc.vistas.IniciarSesion iniciarSesion;
@@ -31,8 +35,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private inventarioapc.vistas.CrearEmpleado crearEmpleado;
     private inventarioapc.vistas.CrearProveedor crearProveedor;
     private inventarioapc.vistas.Administrador administrador;
+    
     /**
-     * Creates new form VentanaPrincipal
+     * Constructor del aplicativo general, inicializamos las ventanas y controladores, 
+     * se asignan las ventanas a los controladores segun requerimientos
+     * asignamos el controlador de las ventanas a cada una de las vistas creadas para asi generar una coneccion directas al mismo objeto
      */
     public VentanaPrincipal() {
         initComponents();
@@ -54,6 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor, administrador);
         controladorProducto = new inventarioapc.controladores.Producto(crearProducto, inventario);
         controladorPersonas = new inventarioapc.controladores.Personas(crearEmpleado, empleados, crearProveedor, proveedor, administrador, controladorProducto);
+        controladorCajero = new inventarioapc.controladores.Cajero(cajero, facturaDetalle, factura, controladorProducto, controladorPersonas);
         
         //ASIGNACION DE CONTROLADOR DE VENTANAS
         proveedor.setControladorNavegacion(controladorVentanas);

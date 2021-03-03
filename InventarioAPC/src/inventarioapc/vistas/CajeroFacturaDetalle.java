@@ -9,7 +9,7 @@ import inventarioapc.controladores.Ventanas;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
  */
 public class CajeroFacturaDetalle extends javax.swing.JPanel {
 

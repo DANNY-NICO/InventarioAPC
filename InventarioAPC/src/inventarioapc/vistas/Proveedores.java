@@ -9,7 +9,8 @@ import inventarioapc.controladores.Ventanas;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
+ * 
  */
 public class Proveedores extends javax.swing.JPanel {
 

@@ -9,12 +9,18 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
+ * Clase encargada de realizar la coneccion y verificacion de datos en el inicio de sesion
+ * 
  */
 public class Autentificacion {
    
     private inventarioapc.vistas.IniciarSesion vistaInicioSesion;
     
+    /**
+     * la ventana es la vista del inicio de sesion vista por el usuario
+     * @param ventana 
+     */
     public Autentificacion(inventarioapc.vistas.IniciarSesion ventana){
         this.vistaInicioSesion = ventana;
     } 

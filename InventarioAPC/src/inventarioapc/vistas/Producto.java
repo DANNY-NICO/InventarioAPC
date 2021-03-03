@@ -7,7 +7,7 @@ package inventarioapc.vistas;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
  */
 public class Producto extends javax.swing.JPanel {
 

@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
  */
 public class IniciarSesion extends javax.swing.JPanel {
 

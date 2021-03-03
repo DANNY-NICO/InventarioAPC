@@ -7,7 +7,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
  */
 public class Inventario extends javax.swing.JPanel {
     

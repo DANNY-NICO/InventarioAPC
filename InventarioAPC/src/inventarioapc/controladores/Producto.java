@@ -12,7 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
+ * Clase encargada de realizar la consulta y carga a la base de datos con todo lo referente a los productos
+ * 
  */
 public class Producto {
     
@@ -20,6 +22,11 @@ public class Producto {
     private inventarioapc.vistas.Inventario inventario;
     private DefaultTableModel modelo;
     
+    /**
+     * Los parametros son las vistas especificas para el acceso a los campos que el usuario vera e interactuara con respecto a los productos
+     * @param crearProducto
+     * @param inventario 
+     */
     public Producto(inventarioapc.vistas.CrearProducto crearProducto, inventarioapc.vistas.Inventario inventario){
         this.crearProducto = crearProducto;
         this.inventario = inventario;

@@ -10,13 +10,31 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
+ * Clase encargada de toda la navegacion del aplicativo
+ * 
  */
 public class Ventanas {
    
     private ArrayList<JPanel> lista;
     private JPanel main;
 
+    /**
+     * Cada uno de los parametros se refiere a una ventana mostrada en el aplicativo, cada uno es un JPAnel  los cuales seran almacenados en la lista
+     * @param boton
+     * @param inicioSesion
+     * @param cajero
+     * @param facturaDetalle
+     * @param factura
+     * @param crearProducto
+     * @param empleados
+     * @param inventario
+     * @param proveedor
+     * @param contenedor
+     * @param crearEmpleado
+     * @param crearProveedor
+     * @param administrador 
+     */
     public Ventanas(JPanel boton, JPanel inicioSesion, JPanel cajero, JPanel facturaDetalle, JPanel factura, JPanel crearProducto, JPanel empleados, JPanel inventario, JPanel proveedor, JPanel contenedor, JPanel crearEmpleado, JPanel crearProveedor, JPanel administrador) {
         
         //-------------INICIO DE LA LISTA CON LAS VENTANAS----
@@ -42,6 +60,8 @@ public class Ventanas {
     }
     
     /**
+     * Metodo encargado de realizar el cambio entre ventana siguiendo la siguiente tabla de asignacion
+     * 
      * 0 = inicio Sesioin
      * 1 = cajero
      * 2 = facturaDetalle

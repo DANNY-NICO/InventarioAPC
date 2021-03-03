@@ -10,7 +10,7 @@ import inventarioapc.controladores.Ventanas;
 
 /**
  *
- * @author nicolas
+ * @author nicolas soler & danny ochoa
  */
 public class CajeroInicio extends javax.swing.JPanel {
 
