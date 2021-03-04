@@ -5,6 +5,8 @@
  */
 package inventarioapc.controladores;
 
+import config.Conexion;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -21,7 +23,7 @@ public class Producto {
     private inventarioapc.vistas.CrearProducto crearProducto;
     private inventarioapc.vistas.Inventario inventario;
     private DefaultTableModel modelo;
-    
+    Connection conn = null;
     /**
      * Los parametros son las vistas especificas para el acceso a los campos que el usuario vera e interactuara con respecto a los productos
      * @param crearProducto
@@ -34,7 +36,11 @@ public class Producto {
         modelo = new DefaultTableModel();
         cargarTabla();
     } 
-
+    
+    public void crearProducto() {
+        conn = Conexion.coneBd();
+    }
+            
     public void cargarTabla(){
          
         
