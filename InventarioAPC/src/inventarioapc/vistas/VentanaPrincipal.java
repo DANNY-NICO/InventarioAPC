@@ -76,6 +76,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         factura.setControladorNavegacion(controladorVentanas);
         administrador.setControladorNavegacion(controladorVentanas);
         
+        //ASIGNACION DE CONTROLADOR DE PRODUCTOS
+        crearProducto.setControladorProductos(controladorProducto);
+        
         botones1.setControladorVentana(controladorVentanas);
     }
 

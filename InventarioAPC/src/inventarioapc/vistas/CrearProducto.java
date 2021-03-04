@@ -7,6 +7,7 @@ package inventarioapc.vistas;
 
 
 import inventarioapc.controladores.Ventanas;
+import inventarioapc.controladores.Producto;
 
 
 /**
@@ -15,6 +16,7 @@ import inventarioapc.controladores.Ventanas;
  */
 public class CrearProducto extends javax.swing.JPanel {
 
+    private inventarioapc.controladores.Producto controladorProductos;
     public inventarioapc.controladores.Ventanas controladorNavegacion;
     /**
      * Creates new form CrearProducto
@@ -298,7 +300,7 @@ public class CrearProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_agregarCategoriaActionPerformed
 
     private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
-        
+        controladorProductos.crearProducto();
         controladorNavegacion.cambioVentana(6);
     }//GEN-LAST:event_agregarProductoActionPerformed
 
@@ -345,6 +347,14 @@ public class CrearProducto extends javax.swing.JPanel {
 
     public void setControladorNavegacion(Ventanas controladorNavegacion) {
         this.controladorNavegacion = controladorNavegacion;
+    }
+    
+    public Producto getControladorProductos(){
+        return controladorProductos;
+    }
+    
+    public void setControladorProductos(Producto controladorProducto){
+        this.controladorProductos = controladorProducto;
     }
 }
 
