@@ -15,7 +15,7 @@ public class Cajero {
     private inventarioapc.vistas.CajeroInicio cajero;
     private inventarioapc.vistas.CajeroFacturaDetalle detalle;
     private inventarioapc.vistas.CajeroFactura factura;
-    private inventarioapc.controladores.Producto productos;
+    private inventarioapc.controladores.Productos productos;
     private inventarioapc.controladores.Personas personas;
 
     /**
@@ -27,7 +27,7 @@ public class Cajero {
      * @param productos
      * @param personas 
      */
-    public Cajero(inventarioapc.vistas.CajeroInicio cajero, inventarioapc.vistas.CajeroFacturaDetalle detalle, inventarioapc.vistas.CajeroFactura factura, inventarioapc.controladores.Producto productos, inventarioapc.controladores.Personas personas) {
+    public Cajero(inventarioapc.vistas.CajeroInicio cajero, inventarioapc.vistas.CajeroFacturaDetalle detalle, inventarioapc.vistas.CajeroFactura factura, inventarioapc.controladores.Productos productos, inventarioapc.controladores.Personas personas) {
     
         this.cajero = cajero;
         this.detalle = detalle;

@@ -8,7 +8,8 @@ public class Producto {
     
     private int codigoProducto;
     private String nombre;
-    private int stock;
+    private int stockLocal;
+    private int stockBodega;
     private double precioVenta;
     private double precioCompra;
     private double utilidad;
@@ -16,6 +17,10 @@ public class Producto {
     private int codigoCategoria; 
 
     public Producto() {
+    }
+    
+    public String toString(){
+        return ""+codigoCategoria+"\n"+nombre+"\n"+stockLocal+"\n"+stockBodega+"\n"+precioVenta+"\n"+precioCompra+"\n"+utilidad+"\n"+codigoMarca+"\n"+codigoCategoria;
     }
 
     public int getCodigoProducto() {
@@ -34,12 +39,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getStock() {
-        return stock;
+    public int getStockLocal() {
+        return stockLocal;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setStockLocal(int stockLocal) {
+        this.stockLocal = stockLocal;
     }
 
     public double getPrecioVenta() {
@@ -80,6 +85,14 @@ public class Producto {
 
     public void setCodigoCategoria(int codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
+    }
+
+    public int getStockBodega() {
+        return stockBodega;
+    }
+
+    public void setStockBodega(int stockBodega) {
+        this.stockBodega = stockBodega;
     }
     
     

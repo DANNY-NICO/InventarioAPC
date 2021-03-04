@@ -19,7 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     //CONTROLADORES
     private inventarioapc.controladores.Ventanas controladorVentanas;
-    private inventarioapc.controladores.Producto controladorProducto;
+    private inventarioapc.controladores.Productos controladorProducto;
     private inventarioapc.controladores.Personas controladorPersonas;
     private inventarioapc.controladores.Cajero controladorCajero;
     
@@ -59,7 +59,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         
         controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor, administrador);
-        controladorProducto = new inventarioapc.controladores.Producto(crearProducto, inventario);
+        controladorProducto = new inventarioapc.controladores.Productos(crearProducto, inventario, administrador);
         controladorPersonas = new inventarioapc.controladores.Personas(crearEmpleado, empleados, crearProveedor, proveedor, administrador, controladorProducto);
         controladorCajero = new inventarioapc.controladores.Cajero(cajero, facturaDetalle, factura, controladorProducto, controladorPersonas);
         
@@ -78,6 +78,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         //ASIGNACION DE CONTROLADOR DE PRODUCTOS
         crearProducto.setControladorProductos(controladorProducto);
+        proveedor.setControladorPersonas(controladorPersonas);
+        crearProveedor.setControladorPersonas(controladorPersonas);
+        administrador.setControladorProductos(controladorProducto);
         
         botones1.setControladorVentana(controladorVentanas);
     }

@@ -1,7 +1,7 @@
 
 
 package inventarioapc.vistas;
-import inventarioapc.controladores.Producto;
+import inventarioapc.controladores.Productos;
 import inventarioapc.controladores.Ventanas;
 import javax.swing.JTable;
 
@@ -11,7 +11,7 @@ import javax.swing.JTable;
  */
 public class Inventario extends javax.swing.JPanel {
     
-    public inventarioapc.controladores.Producto controlador;
+    public inventarioapc.controladores.Productos controlador;
     public inventarioapc.controladores.Ventanas controladorNavegacion;
     
     public Inventario() {
@@ -99,6 +99,7 @@ public class Inventario extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        tablaDatos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -107,6 +108,8 @@ public class Inventario extends javax.swing.JPanel {
                 "ID", "NOMBRE", "P COMPRA", "P VENTA", "STOCK"
             }
         ));
+        tablaDatos.setRowHeight(40);
+        tablaDatos.setRowMargin(2);
         jScrollPane4.setViewportView(tablaDatos);
         if (tablaDatos.getColumnModel().getColumnCount() > 0) {
             tablaDatos.getColumnModel().getColumn(0).setMinWidth(50);
@@ -244,11 +247,11 @@ public class Inventario extends javax.swing.JPanel {
         return tablaDatos;
     }
 
-    public Producto getControlador() {
+    public Productos getControlador() {
         return controlador;
     }
 
-    public void setControlador(Producto controlador) {
+    public void setControlador(Productos controlador) {
         this.controlador = controlador;
     }
 

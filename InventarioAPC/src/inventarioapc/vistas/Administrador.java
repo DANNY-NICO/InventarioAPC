@@ -5,7 +5,9 @@
  */
 package inventarioapc.vistas;
 
+import inventarioapc.controladores.Productos;
 import inventarioapc.controladores.Ventanas;
+import javax.swing.JTable;
 
 /**
  *
@@ -13,6 +15,7 @@ import inventarioapc.controladores.Ventanas;
  */
 public class Administrador extends javax.swing.JPanel {
 
+    public inventarioapc.controladores.Productos controladorProductos;
     public inventarioapc.controladores.Ventanas controladorNavegacion;
     /**
      * Creates new form Administrador
@@ -86,6 +89,7 @@ public class Administrador extends javax.swing.JPanel {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
+        jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -97,6 +101,8 @@ public class Administrador extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setRowHeight(40);
+        jTable1.setRowMargin(2);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -236,4 +242,14 @@ public class Administrador extends javax.swing.JPanel {
     public void setControladorNavegacion(Ventanas controladorNavegacion) {
         this.controladorNavegacion = controladorNavegacion;
     }
+    
+    public JTable getTabla(){
+        return jTable1;
+    }
+
+    public void setControladorProductos(Productos controladorProductos) {
+        this.controladorProductos = controladorProductos;
+    }
+    
+    
 }
