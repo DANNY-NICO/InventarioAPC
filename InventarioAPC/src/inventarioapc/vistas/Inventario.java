@@ -107,14 +107,21 @@ public class Inventario extends javax.swing.JPanel {
             new String [] {
                 "ID", "NOMBRE", "P COMPRA", "P VENTA", "STOCK"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaDatos.setRowHeight(40);
         tablaDatos.setRowMargin(2);
         jScrollPane4.setViewportView(tablaDatos);
         if (tablaDatos.getColumnModel().getColumnCount() > 0) {
-            tablaDatos.getColumnModel().getColumn(0).setMinWidth(50);
+            tablaDatos.getColumnModel().getColumn(0).setResizable(false);
             tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaDatos.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -207,9 +214,9 @@ public class Inventario extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

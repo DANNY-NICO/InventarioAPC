@@ -6,12 +6,17 @@
 package inventarioapc.controladores;
 
 //import config.Conexion;
+import config.Conexion;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import inventarioapc.modelos.Producto;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -25,7 +30,10 @@ public class Productos {
     private inventarioapc.vistas.Inventario inventario;
     private inventarioapc.vistas.Administrador adminitrador;
     private DefaultTableModel modelo;
-    //Connection conn = null;
+    Connection conn = null;
+    Statement st;
+    PreparedStatement ps;
+    ResultSet rs;
     /**
      * Los parametros son las vistas especificas para el acceso a los campos que el usuario vera e interactuara con respecto a los productos
      * @param crearProducto
@@ -38,10 +46,63 @@ public class Productos {
         inventario.setControlador(this);
         modelo = new DefaultTableModel();
         cargarTabla();
+        listar();
     } 
     
+    void listar() {
+        String sql = "SELECT * FROM tbproducto";
+        try {
+            conn = Conexion.coneBd();
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            System.out.println(rs);
+            String[]tbproducto = new String[5];
+            System.out.print(rs.getArray(sql));
+            
+            while (rs.next()) {
+                System.out.print(rs.getString(1));
+  /*              tbproducto[0] = rs.getString(0);
+                tbproducto[1] = rs.getString(1);
+                tbproducto[2] = rs.getString(2);
+                tbproducto[3] = rs.getString(3);
+                tbproducto[4] = rs.getString(4);
+                tbproducto[5] = rs.getString(5);
+                System.out.println("Holi");
+                modelo.addRow(tbproducto);
+                */
+            }
+           System.out.print(tbproducto[0]);
+        } catch (Exception e) {
+            System.err.print(e);
+        }
+    }
+    
+    
     public void crearProducto() {
-        //conn = Conexion.coneBd();
+        try {
+        conn = Conexion.coneBd();   
+        ps = conn.prepareStatement("INSERT INTO tbproducto(cod_pro, nom_pro, stk_pro, stk_pro_bod, com_pro, ven_proi) VALUES(?,?,?,?,?,?) ");
+        ps.setInt(1, 1);
+        ps.setString(2, crearProducto.getNombreTxt().getText());
+        ps.setInt(3, convertirStringInt(crearProducto.getLocalStock().getValue()+""));
+        ps.setInt(4, convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
+        ps.setDouble(5, convertirStringDouble(crearProducto.getPrecioCompra().getText()+""));
+        ps.setDouble(6, convertirStringDouble(crearProducto.getPrecioVenta().getText()+""));
+        
+        int res = ps.executeUpdate();
+        
+        if (res > 0) {
+            JOptionPane.showMessageDialog(null, "Producto guardado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al guardar producto");
+        }
+        conn.close();
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+        
+        
+        /*
         Producto temporal = new Producto();
         temporal.setCodigoCategoria(convertirStringInt(crearProducto.getCategoria().getSelectedItem()+""));
         temporal.setCodigoMarca(convertirStringInt(crearProducto.getMarca().getSelectedItem()+""));
@@ -54,12 +115,21 @@ public class Productos {
         temporal.setNombre(crearProducto.getNombreTxt().getText());
         
         agregarFila(temporal);
+*/
     }
     
     public int convertirStringInt (String n){
         try {
             return Integer.parseInt(n);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+    
+    public double convertirStringDouble (String n) {
+        try {
+            return Double.parseDouble(n);
+        } catch (NumberFormatException e) {
             return 0;
         }
     }
@@ -95,6 +165,7 @@ public class Productos {
         info[3]="intento B";
         info[4]="10";
         info[5]="10";
+  
         
         modelo.addRow(info);
         

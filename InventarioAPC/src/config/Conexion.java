@@ -18,7 +18,7 @@ public class Conexion {
     public static Connection coneBd() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/bd_inventarioapc", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/primera_entrega", "root", "");
             System.out.println("Conectado");
             return (conn);
         } catch (ClassNotFoundException | SQLException e) {
