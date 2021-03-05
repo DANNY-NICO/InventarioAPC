@@ -162,11 +162,20 @@ public class Productos {
         adminitrador.getTabla().setModel(modelo);
     }
     
-    public void eliminarFila(){
+    public void eliminarFila() throws SQLException{
         int i = inventario.getTable().getSelectedRow();
-        
+            
+           
         if(i>=0){
+            try {
+            String sql = "DELETE FROM primera_entrega.tbproducto" + "WHERE cod_pro = " + i;
+            conn = Conexion.coneBd();
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
             modelo.removeRow(i);
+            } catch (SQLException e) {
+                System.err.print(e); 
+            }
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
