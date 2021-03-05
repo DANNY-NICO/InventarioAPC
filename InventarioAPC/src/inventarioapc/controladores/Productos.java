@@ -30,6 +30,8 @@ public class Productos {
     private inventarioapc.vistas.Inventario inventario;
     private inventarioapc.vistas.Administrador adminitrador;
     private DefaultTableModel modelo;
+    int code;
+    boolean primer;
     Connection conn = null;
     Statement st;
     PreparedStatement ps;
@@ -45,35 +47,45 @@ public class Productos {
         this.adminitrador = adminitrador;
         inventario.setControlador(this);
         modelo = new DefaultTableModel();
+        code = 0;
+        primer = true;
+        
         cargarTabla();
         listar();
     } 
     
     void listar() {
-        String sql = "SELECT * FROM tbproducto";
+        while(modelo.getRowCount() > 0){
+            System.out.println(0+"//"+modelo.getRowCount());
+            modelo.removeRow(0);
+            System.out.println(0+"**"+modelo.getRowCount());
+        }
+        
+        
+        String sql = "SELECT * FROM primera_entrega.tbproducto";
         try {
             conn = Conexion.coneBd();
             st = conn.createStatement();
             rs = st.executeQuery(sql);
-            System.out.println(rs);
-            String[]tbproducto = new String[5];
-            System.out.print(rs.getArray(sql));
+            String[]datos = new String[6];
+            
             
             while (rs.next()) {
-                System.out.print(rs.getString(1));
-  /*              tbproducto[0] = rs.getString(0);
-                tbproducto[1] = rs.getString(1);
-                tbproducto[2] = rs.getString(2);
-                tbproducto[3] = rs.getString(3);
-                tbproducto[4] = rs.getString(4);
-                tbproducto[5] = rs.getString(5);
-                System.out.println("Holi");
-                modelo.addRow(tbproducto);
-                */
+                datos[0] = rs.getString(1); //CODIGO
+                datos[1] = rs.getString(2); //NOMBRE
+                datos[2] = rs.getString(3); //STOCK LOCAL
+                datos[3] = rs.getString(4); //STOCK BODEBA
+                datos[4] = rs.getString(5); //COMPRA
+                datos[5] = rs.getString(6); //VENTA
+                
+                modelo.addRow(datos);
             }
-           System.out.print(tbproducto[0]);
+            if(primer){
+                code = Integer.parseInt(datos[0])+1;
+                primer = false;
+            }
         } catch (Exception e) {
-            System.err.print(e);
+            System.err.println(e);
         }
     }
     
@@ -82,7 +94,8 @@ public class Productos {
         try {
         conn = Conexion.coneBd();   
         ps = conn.prepareStatement("INSERT INTO tbproducto(cod_pro, nom_pro, stk_pro, stk_pro_bod, com_pro, ven_proi) VALUES(?,?,?,?,?,?) ");
-        ps.setInt(1, 1);
+        ps.setInt(1, code);
+        code +=1;
         ps.setString(2, crearProducto.getNombreTxt().getText());
         ps.setInt(3, convertirStringInt(crearProducto.getLocalStock().getValue()+""));
         ps.setInt(4, convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
@@ -92,6 +105,7 @@ public class Productos {
         int res = ps.executeUpdate();
         
         if (res > 0) {
+            listar();
             JOptionPane.showMessageDialog(null, "Producto guardado");
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar producto");
@@ -100,22 +114,6 @@ public class Productos {
         } catch(Exception e) {
             System.err.println(e);
         }
-        
-        
-        /*
-        Producto temporal = new Producto();
-        temporal.setCodigoCategoria(convertirStringInt(crearProducto.getCategoria().getSelectedItem()+""));
-        temporal.setCodigoMarca(convertirStringInt(crearProducto.getMarca().getSelectedItem()+""));
-        temporal.setCodigoProducto(0);
-        temporal.setPrecioCompra(convertirStringInt(crearProducto.getPrecioCompra().getText()));
-        temporal.setPrecioVenta(convertirStringInt(crearProducto.getPrecioVenta().getText()));
-        temporal.setStockLocal(convertirStringInt(crearProducto.getLocalStock().getValue()+""));
-        temporal.setStockBodega(convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
-        temporal.setUtilidad(convertirStringInt(crearProducto.getPrecioVenta().getText()) - convertirStringInt(crearProducto.getPrecioCompra().getText()));
-        temporal.setNombre(crearProducto.getNombreTxt().getText());
-        
-        agregarFila(temporal);
-*/
     }
     
     public int convertirStringInt (String n){
@@ -153,21 +151,12 @@ public class Productos {
         
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("P. Venta");
-        modelo.addColumn("P. Compra");
         modelo.addColumn("Stock local");
         modelo.addColumn("Stock bodega");
+        modelo.addColumn("P. Venta");
+        modelo.addColumn("P. Compra");
         
-        String info[] = new String[6];
-        info[0]="1";
-        info[1]="prueba";
-        info[2]="intento A";
-        info[3]="intento B";
-        info[4]="10";
-        info[5]="10";
-  
-        
-        modelo.addRow(info);
+        listar();
         
         inventario.getTable().setModel(modelo);
         adminitrador.getTabla().setModel(modelo);
