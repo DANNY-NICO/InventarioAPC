@@ -162,6 +162,7 @@ public class Productos {
         adminitrador.getTabla().setModel(modelo);
     }
     
+<<<<<<< HEAD
     public void eliminarFila() throws SQLException{
         int i = inventario.getTable().getSelectedRow();
         Object seleccion = inventario.getTable().getValueAt(i, 0);
@@ -182,6 +183,10 @@ public class Productos {
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
+=======
+    public void eliminarFila(){
+        
+>>>>>>> 515ddcd2e673c9b048ad2fb23330980c40b40907
     }
     
 }
