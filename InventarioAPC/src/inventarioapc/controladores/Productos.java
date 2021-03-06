@@ -164,14 +164,17 @@ public class Productos {
     
     public void eliminarFila() throws SQLException{
         int i = inventario.getTable().getSelectedRow();
-            
-           
+        Object seleccion = inventario.getTable().getValueAt(i, 0);
+        int valor = Integer.parseInt(seleccion.toString());
+        
         if(i>=0){
             try {
-            String sql = "DELETE FROM primera_entrega.tbproducto" + "WHERE cod_pro = " + i;
+            String sql = "DELETE FROM primera_entrega.tbproducto WHERE cod_pro = ?";
             conn = Conexion.coneBd();
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
+            PreparedStatement st = conn.prepareCall(sql);
+            st.setInt(1, valor);
+            st.executeUpdate();
+                System.out.println(st);
             modelo.removeRow(i);
             } catch (SQLException e) {
                 System.err.print(e); 
