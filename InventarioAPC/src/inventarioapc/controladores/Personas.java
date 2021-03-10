@@ -5,8 +5,13 @@
  */
 package inventarioapc.controladores;
 
+import config.Conexion;
 import inventarioapc.modelos.Producto;
 import inventarioapc.modelos.Proveedor;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +30,10 @@ public class Personas {
     private inventarioapc.vistas.Administrador administrador;
     private inventarioapc.controladores.Productos productos;
     private DefaultTableModel modelo;
+    Connection conn = null;
+    Statement st;
+    PreparedStatement ps;
+    ResultSet rs;
 
     /**
      * los parametros crearEmpleado, empleado, crearProveedor y proveedor se refieren a las vistas del usuario, 
@@ -44,9 +53,37 @@ public class Personas {
         this.administrador = administrador;
         this.productos = producto;
         modelo = new DefaultTableModel();
-        cargarTabla();
+        cargarTablaProveedor();
     }
     
+    //EMPLEADO
+    public void crearEmpleado(){
+        try {
+        conn = Conexion.coneBd();   
+        ps = conn.prepareStatement("INSERT INTO tbproducto(cod_pro, nom_pro, stk_pro, stk_pro_bod, com_pro, ven_proi) VALUES(?,?,?,?,?,?) ");
+        ps.setInt(1, 0);
+        /**
+         * ps.setString(2, crearProducto.getNombreTxt().getText());
+        ps.setInt(3, convertirStringInt(crearProducto.getLocalStock().getValue()+""));
+        ps.setInt(4, convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
+        ps.setDouble(5, convertirStringDouble(crearProducto.getPrecioCompra().getText()+""));
+        ps.setDouble(6, convertirStringDouble(crearProducto.getPrecioVenta().getText()+""));
+         */
+        
+        int res = ps.executeUpdate();
+        
+        if (res > 0) {
+            JOptionPane.showMessageDialog(null, "Empleado guardado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al guardar empleado");
+        }
+        conn.close();
+        } catch(Exception e) {
+            System.err.println(e);
+        }
+    }
+    
+    //PROVEEDOR
     public void crearProveedor(){
         Proveedor temporal = new Proveedor();
         temporal.setCorreo(crearProveedor.getCorreo().getText());
@@ -56,18 +93,10 @@ public class Personas {
         temporal.setCodigoProducto(crearProveedor.getProductos().getSelectedItem()+"");
         temporal.setPrecio(convertirStringInt(crearProveedor.getPrecio().getText()));
         
-        agregarFila(temporal);
+        agregarFilaProveedor(temporal);
     }
     
-    public int convertirStringInt (String n){
-        try {
-            return Integer.parseInt(n);
-        } catch (Exception e) {
-            return 0;
-        }
-    }
-    
-    public void agregarFila(Proveedor entrante){
+    public void agregarFilaProveedor(Proveedor entrante){
         String info[] = new String[5];
         info[0]=""+entrante.getEmpresa();
         info[1]=""+entrante.getContacto();
@@ -79,8 +108,8 @@ public class Personas {
         proveedor.getTable().setModel(modelo);
         System.out.println("hechoi");
     }
-            
-    public void cargarTabla(){
+    
+    public void cargarTablaProveedor(){
                  
         modelo.addColumn("Empesa");
         modelo.addColumn("Contacto");
@@ -99,7 +128,7 @@ public class Personas {
         proveedor.getTable().setModel(modelo);
     }
     
-    public void eliminarFila(){
+    public void eliminarFilaProveedor(){
         int i = proveedor.getTable().getSelectedRow();
         
         if(i>=0){
@@ -108,5 +137,14 @@ public class Personas {
             JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
     }
-    
+        
+    //GENERAL
+    public int convertirStringInt (String n){
+        try {
+            return Integer.parseInt(n);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+       
 }

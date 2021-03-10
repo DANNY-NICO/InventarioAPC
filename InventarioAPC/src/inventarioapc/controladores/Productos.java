@@ -29,6 +29,7 @@ public class Productos {
     private inventarioapc.vistas.CrearProducto crearProducto;
     private inventarioapc.vistas.Inventario inventario;
     private inventarioapc.vistas.Administrador adminitrador;
+    private inventarioapc.vistas.CajeroInicio cajero;
     private DefaultTableModel modelo;
     int code;
     boolean primer;
@@ -41,10 +42,11 @@ public class Productos {
      * @param crearProducto
      * @param inventario 
      */
-    public Productos(inventarioapc.vistas.CrearProducto crearProducto, inventarioapc.vistas.Inventario inventario, inventarioapc.vistas.Administrador adminitrador){
+    public Productos(inventarioapc.vistas.CrearProducto crearProducto, inventarioapc.vistas.Inventario inventario, inventarioapc.vistas.Administrador adminitrador, inventarioapc.vistas.CajeroInicio cajero){
         this.crearProducto = crearProducto;
         this.inventario = inventario;
         this.adminitrador = adminitrador;
+        this.cajero = cajero;
         inventario.setControlador(this);
         modelo = new DefaultTableModel();
         code = 0;
@@ -56,9 +58,7 @@ public class Productos {
     
     void listar() {
         while(modelo.getRowCount() > 0){
-            System.out.println(0+"//"+modelo.getRowCount());
             modelo.removeRow(0);
-            System.out.println(0+"**"+modelo.getRowCount());
         }
         
         
@@ -131,6 +131,12 @@ public class Productos {
             return 0;
         }
     }
+
+    public DefaultTableModel getModelo() {
+        return modelo;
+    }
+    
+    
     
     public void agregarFila(Producto entrante){
         String info[] = new String[6];
@@ -160,10 +166,11 @@ public class Productos {
         
         inventario.getTable().setModel(modelo);
         adminitrador.getTabla().setModel(modelo);
+        cajero.getTable().setModel(modelo);
     }
     
-<<<<<<< HEAD
-    public void eliminarFila() throws SQLException{
+
+    public void eliminarFila() {
         int i = inventario.getTable().getSelectedRow();
         Object seleccion = inventario.getTable().getValueAt(i, 0);
         int valor = Integer.parseInt(seleccion.toString());
@@ -183,10 +190,5 @@ public class Productos {
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
-=======
-    public void eliminarFila(){
-        
->>>>>>> 515ddcd2e673c9b048ad2fb23330980c40b40907
     }
-    
 }

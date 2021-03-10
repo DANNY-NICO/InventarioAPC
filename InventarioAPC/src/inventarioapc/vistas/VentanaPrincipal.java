@@ -46,9 +46,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         
         iniciarSesion = new inventarioapc.vistas.IniciarSesion();
-        cajero = new inventarioapc.vistas.CajeroInicio();
-        facturaDetalle = new inventarioapc.vistas.CajeroFacturaDetalle();
         factura = new inventarioapc.vistas.CajeroFactura();
+        facturaDetalle = new inventarioapc.vistas.CajeroFacturaDetalle(factura);
+        cajero = new inventarioapc.vistas.CajeroInicio(facturaDetalle);
         crearProducto = new inventarioapc.vistas.CrearProducto();
         empleados = new inventarioapc.vistas.Empleados();
         inventario = new inventarioapc.vistas.Inventario();
@@ -59,7 +59,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         
         controladorVentanas = new inventarioapc.controladores.Ventanas(botones1, iniciarSesion, cajero, facturaDetalle, factura, crearProducto, empleados, inventario, proveedor, contenedor, crearEmpleado, crearProveedor, administrador);
-        controladorProducto = new inventarioapc.controladores.Productos(crearProducto, inventario, administrador);
+        controladorProducto = new inventarioapc.controladores.Productos(crearProducto, inventario, administrador, cajero);
         controladorPersonas = new inventarioapc.controladores.Personas(crearEmpleado, empleados, crearProveedor, proveedor, administrador, controladorProducto);
         controladorCajero = new inventarioapc.controladores.Cajero(cajero, facturaDetalle, factura, controladorProducto, controladorPersonas);
         
@@ -81,6 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         proveedor.setControladorPersonas(controladorPersonas);
         crearProveedor.setControladorPersonas(controladorPersonas);
         administrador.setControladorProductos(controladorProducto);
+        cajero.setControladorProdcutos(controladorProducto);
         
         botones1.setControladorVentana(controladorVentanas);
     }
