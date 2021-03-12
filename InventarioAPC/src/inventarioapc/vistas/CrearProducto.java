@@ -44,6 +44,7 @@ public class CrearProducto extends javax.swing.JPanel {
         initComponents();   
         seleccionCategoria = -1;
         seleccionMarca = -1;
+        codigoEdit="-1";
         ledCategoria.setBackground(Color.RED);
         ledMarca.setBackground(Color.RED);
     }
@@ -589,6 +590,8 @@ public class CrearProducto extends javax.swing.JPanel {
         cargarMarca(marcas);
         seleccionCategoria=-1;
         seleccionMarca=-1;
+        txtCategoria.setText("");
+        txtMarca.setText("");
         ledCategoria.setBackground(Color.RED);
         ledMarca.setBackground(Color.RED);
     }
