@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -54,13 +55,14 @@ public class Productos {
         
         cargarTabla();
         listar();
+        cargarCategoria();
+        cargarMarca();
     } 
     
     void listar() {
         while(modelo.getRowCount() > 0){
             modelo.removeRow(0);
         }
-        
         
         String sql = "SELECT * FROM primera_entrega.tbproducto";
         try {
@@ -89,18 +91,102 @@ public class Productos {
         }
     }
     
+    public void crearCategoria(String nombre){
+        try{
+            conn = Conexion.coneBd();   
+            ps = conn.prepareStatement("INSERT INTO tbcategoria(cod_cat, nom_cat) VALUES(?,?) ");
+            crearProducto.setCategoriaCodMax();
+            ps.setInt(1,crearProducto.getCategoriaCodMax());
+            ps.setString(2, nombre);
+            int res = ps.executeUpdate();
+            if (res > 0) {
+                cargarCategoria();
+                JOptionPane.showMessageDialog(null, "Categoria guardada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar categoria");
+            }
+            
+        }catch (Exception e){
+            System.err.println(e);
+        }
+    }
     
-    public void crearProducto() {
+    public void cargarCategoria(){
+        ArrayList<String> categorias = new ArrayList<String>();
+        categorias.add("-1");
+        categorias.add("-Seleccione-");
+        String sql = "SELECT * FROM primera_entrega.tbcategoria";
+        try{
+            conn = Conexion.coneBd();
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                categorias.add(rs.getString(1));    //COD_CAT
+                categorias.add(rs.getString(2));    //NOM_CAT
+            }
+                                   
+        }catch (Exception e){
+            System.err.println(e);
+        }
+        crearProducto.cargarCategoria(categorias);
+    }
+    
+    public void cargarMarca(){
+        ArrayList<String> marcas = new ArrayList<String>();
+        marcas.add("-1");
+        marcas.add("-Seleccione-");
+        String sql = "SELECT * FROM primera_entrega.tbmarca";
+        try{
+            conn = Conexion.coneBd();
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                marcas.add(rs.getString(1));    //COD_MAR
+                marcas.add(rs.getString(2));    //NOM_MAR
+            }
+                                   
+        }catch (Exception e){
+            System.err.println(e);
+        }
+        crearProducto.cargarMarca(marcas);
+    }
+    
+    public void crearMarca(String nombre){
+        try{
+            conn = Conexion.coneBd();   
+            ps = conn.prepareStatement("INSERT INTO tbmarca (cod_mar, nom_mar) VALUES(?,?) ");
+            crearProducto.setMarcaCodMax();
+            ps.setInt(1,crearProducto.getMarcaCodMax());
+            ps.setString(2, nombre);
+            int res = ps.executeUpdate();
+            if (res > 0) {
+                cargarMarca();
+                JOptionPane.showMessageDialog(null, "Marca guardada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar Marca");
+            }
+            
+        }catch (Exception e){
+            System.err.println(e);
+        }
+    }
+    
+    public void crearProducto(int marca, int categoria) {
         try {
         conn = Conexion.coneBd();   
-        ps = conn.prepareStatement("INSERT INTO tbproducto(cod_pro, nom_pro, stk_pro, stk_pro_bod, com_pro, ven_proi) VALUES(?,?,?,?,?,?) ");
+        ps = conn.prepareStatement("INSERT INTO tbproducto(cod_pro, nom_pro, stk_pro, stk_pro_bod, com_pro, ven_pro,cod_mar_fk,cod_cat_fk) VALUES(?,?,?,?,?,?,?,?) ");
         ps.setInt(1, code);
         code +=1;
         ps.setString(2, crearProducto.getNombreTxt().getText());
         ps.setInt(3, convertirStringInt(crearProducto.getLocalStock().getValue()+""));
         ps.setInt(4, convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
-        ps.setDouble(5, convertirStringDouble(crearProducto.getPrecioCompra().getText()+""));
-        ps.setDouble(6, convertirStringDouble(crearProducto.getPrecioVenta().getText()+""));
+        ps.setDouble(5, convertirStringDouble(crearProducto.getPrecioCompra().getValue()+""));
+        ps.setDouble(6, convertirStringDouble(crearProducto.getPrecioVenta().getValue()+""));
+        ps.setInt(7, marca);
+        ps.setInt(8, categoria);
+        
         
         int res = ps.executeUpdate();
         
@@ -182,7 +268,6 @@ public class Productos {
             PreparedStatement st = conn.prepareCall(sql);
             st.setInt(1, valor);
             st.executeUpdate();
-                System.out.println(st);
             modelo.removeRow(i);
             } catch (SQLException e) {
                 System.err.print(e); 
