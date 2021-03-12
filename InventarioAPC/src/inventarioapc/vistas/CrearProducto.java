@@ -8,6 +8,7 @@ package inventarioapc.vistas;
 
 import inventarioapc.controladores.Ventanas;
 import inventarioapc.controladores.Productos;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +33,7 @@ public class CrearProducto extends javax.swing.JPanel {
     private int seleccionCategoria;
     private int marcaCodMax;
     private int categoriaCodMax;
+    public String codigoEdit; 
     private inventarioapc.controladores.Productos controladorProductos;
     public inventarioapc.controladores.Ventanas controladorNavegacion;
     /**
@@ -42,6 +44,8 @@ public class CrearProducto extends javax.swing.JPanel {
         initComponents();   
         seleccionCategoria = -1;
         seleccionMarca = -1;
+        ledCategoria.setBackground(Color.RED);
+        ledMarca.setBackground(Color.RED);
     }
 
  
@@ -80,6 +84,8 @@ public class CrearProducto extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        ledCategoria = new javax.swing.JPanel();
+        ledMarca = new javax.swing.JPanel();
         agregarProducto = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -338,6 +344,32 @@ public class CrearProducto extends javax.swing.JPanel {
             }
         });
 
+        ledCategoria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout ledCategoriaLayout = new javax.swing.GroupLayout(ledCategoria);
+        ledCategoria.setLayout(ledCategoriaLayout);
+        ledCategoriaLayout.setHorizontalGroup(
+            ledCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+        ledCategoriaLayout.setVerticalGroup(
+            ledCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        ledMarca.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout ledMarcaLayout = new javax.swing.GroupLayout(ledMarca);
+        ledMarca.setLayout(ledMarcaLayout);
+        ledMarcaLayout.setHorizontalGroup(
+            ledMarcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+        ledMarcaLayout.setVerticalGroup(
+            ledMarcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -353,9 +385,14 @@ public class CrearProducto extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(categoria, 0, 133, Short.MAX_VALUE)
                             .addComponent(marca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ledMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ledCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -376,7 +413,9 @@ public class CrearProducto extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(ledCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -384,7 +423,9 @@ public class CrearProducto extends javax.swing.JPanel {
                             .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(ledMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -455,7 +496,17 @@ public class CrearProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_agregarCategoriaActionPerformed
 
     private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
-        if(nombreTxt.getText().length()>2 && PrecioCompra.getValue().toString().length()>2 && PrecioVenta.getValue().toString().length() >2){
+        if(Integer.parseInt(codigoEdit)>=0){
+            if( seleccionCategoria >=0 && seleccionMarca >=0){
+            controladorProductos.editarProducto(seleccionMarca,seleccionCategoria);
+            controladorNavegacion.cambioVentana(6);
+            codigoEdit="-1";
+            limpiarConsulta();
+            }else {
+                JOptionPane.showMessageDialog(null, "Por favor asegurese de asignar una categoria y una marca");
+            } 
+        }else {
+            if(nombreTxt.getText().length()>2 && PrecioCompra.getValue().toString().length()>2 && PrecioVenta.getValue().toString().length() >2){
             if( seleccionCategoria >=0 && seleccionMarca >=0){
             controladorProductos.crearProducto(seleccionMarca,seleccionCategoria);
             controladorNavegacion.cambioVentana(6);
@@ -465,7 +516,8 @@ public class CrearProducto extends javax.swing.JPanel {
             } 
         }else {
             JOptionPane.showMessageDialog(null, "Por favor asegurese de llenar todos los datos");
-        }      
+        }    
+        }  
     }//GEN-LAST:event_agregarProductoActionPerformed
 
     private void nombreTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxtActionPerformed
@@ -498,20 +550,32 @@ public class CrearProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_categoriaMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         for (int i = 1; i < categorias.size(); i+=2) {
+        boolean confirmacion = false;
+        for (int i = 3; i < categorias.size(); i+=2) {
             if(categorias.get(i)==categoria.getSelectedItem()){
                 seleccionCategoria = Integer.parseInt(categorias.get(i-1));
-                System.out.println(seleccionCategoria);
+                confirmacion=true;
             }
+        }
+        if(confirmacion){
+                ledCategoria.setBackground(Color.GREEN);
+        }else {
+                ledCategoria.setBackground(Color.RED);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for (int i = 1; i < marcas.size(); i+=2) {
+        boolean confirmacion = false;
+        for (int i = 3; i < marcas.size(); i+=2) {
             if(marcas.get(i)==marca.getSelectedItem()){
                 seleccionMarca = Integer.parseInt(marcas.get(i-1));
-                System.out.println(seleccionMarca);
+                confirmacion=true;
             }
+        }
+        if(confirmacion){
+            ledMarca.setBackground(Color.GREEN);
+        }else{
+            ledMarca.setBackground(Color.RED); 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -525,6 +589,8 @@ public class CrearProducto extends javax.swing.JPanel {
         cargarMarca(marcas);
         seleccionCategoria=-1;
         seleccionMarca=-1;
+        ledCategoria.setBackground(Color.RED);
+        ledMarca.setBackground(Color.RED);
     }
     
     public void crearCategoria(){
@@ -567,6 +633,24 @@ public class CrearProducto extends javax.swing.JPanel {
         }
         
     }
+    
+    public void cambiarFocus(String marca, String categoria){
+        int aux=0;
+        for (int i = 0; i < marcas.size(); i+=2) {
+            aux++;
+            if(i==Integer.parseInt(marca)){
+                this.marca.setSelectedIndex(aux);
+            }
+        }
+        aux=0;
+        for (int i = 0; i < categorias.size(); i+=2) {
+            aux++;
+            if(i==Integer.parseInt(categoria)){
+                this.categoria.setSelectedIndex(aux);
+            }
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner BodegaStock;
@@ -596,6 +680,8 @@ public class CrearProducto extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel ledCategoria;
+    private javax.swing.JPanel ledMarca;
     private javax.swing.JSpinner localStock;
     private javax.swing.JComboBox<String> marca;
     private javax.swing.JTextField nombreTxt;

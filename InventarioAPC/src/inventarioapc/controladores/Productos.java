@@ -91,6 +91,47 @@ public class Productos {
         }
     }
     
+    public void cargarEditar(String[] lista){
+        crearProducto.codigoEdit=lista[0];
+        crearProducto.getNombreTxt().setText(lista[1]);
+        crearProducto.getLocalStock().setValue(Integer.parseInt(lista[2]));
+        crearProducto.getBodegaStock().setValue(Integer.parseInt(lista[3]));
+        crearProducto.getPrecioCompra().setValue(Integer.parseInt(lista[4]));
+        crearProducto.getPrecioVenta().setValue(Integer.parseInt(lista[5]));
+        crearProducto.cambiarFocus(lista[6], lista[7]);
+    }
+    
+    public String[] buscarProducto(String codigo){
+        int i = Integer.parseInt(codigo);
+         String sql = "SELECT * FROM primera_entrega.tbproducto";
+        try{
+            conn = Conexion.coneBd();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            String[] producto = new String[8];
+            while(rs.next()){
+                String code = rs.getString(1);
+                if(code.equals(i+"")){
+                    producto[0] = code;
+                    producto[1] = rs.getString(2);
+                    producto[2] = rs.getString(3);
+                    producto[3] = rs.getString(4);
+                    producto[4] = rs.getString(5);
+                    producto[5] = rs.getString(6);
+                    producto[6] = rs.getString(7);
+                    producto[7] = rs.getString(8);
+                }
+            }
+            
+            
+            
+            return producto;
+        }catch(Exception e){
+            System.err.println(e);
+        }
+        return null;
+    }
+    
     public void crearCategoria(String nombre){
         try{
             conn = Conexion.coneBd();   
@@ -169,6 +210,36 @@ public class Productos {
             }
             
         }catch (Exception e){
+            System.err.println(e);
+        }
+    }
+    
+    public void editarProducto(int marca, int categoria){
+        try {
+        conn = Conexion.coneBd();   
+        ps = conn.prepareStatement("UPDATE tbproducto SET cod_pro=?, nom_pro=?, stk_pro=?, stk_pro_bod=?, com_pro=?, ven_pro=?,cod_mar_fk=?,cod_cat_fk=? WHERE cod_pro=? ");
+        ps.setInt(1, Integer.parseInt(crearProducto.codigoEdit));
+        code +=1;
+        ps.setString(2, crearProducto.getNombreTxt().getText());
+        ps.setInt(3, convertirStringInt(crearProducto.getLocalStock().getValue()+""));
+        ps.setInt(4, convertirStringInt(crearProducto.getBodegaStock().getValue()+""));
+        ps.setDouble(5, convertirStringDouble(crearProducto.getPrecioCompra().getValue()+""));
+        ps.setDouble(6, convertirStringDouble(crearProducto.getPrecioVenta().getValue()+""));
+        ps.setInt(7, marca);
+        ps.setInt(8, categoria);
+        ps.setInt(9, Integer.parseInt(crearProducto.codigoEdit));
+        
+        
+        int res = ps.executeUpdate();
+        
+        if (res > 0) {
+            listar();
+            JOptionPane.showMessageDialog(null, "Producto actualizado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar producto");
+        }
+        conn.close();
+        } catch(Exception e) {
             System.err.println(e);
         }
     }
