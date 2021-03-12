@@ -459,6 +459,7 @@ public class CrearProducto extends javax.swing.JPanel {
             if( seleccionCategoria >=0 && seleccionMarca >=0){
             controladorProductos.crearProducto(seleccionMarca,seleccionCategoria);
             controladorNavegacion.cambioVentana(6);
+            limpiarConsulta();
             }else {
                 JOptionPane.showMessageDialog(null, "Por favor asegurese de asignar una categoria y una marca");
             } 
@@ -514,6 +515,18 @@ public class CrearProducto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void limpiarConsulta(){
+        nombreTxt.setText("");
+        PrecioCompra.setValue(0);
+        PrecioVenta.setValue(0);
+        BodegaStock.setValue(0);
+        localStock.setValue(0);
+        cargarCategoria(categorias);
+        cargarMarca(marcas);
+        seleccionCategoria=-1;
+        seleccionMarca=-1;
+    }
+    
     public void crearCategoria(){
         controladorProductos.crearCategoria(txtCategoria.getText());
         cargarCategoria(categorias);
