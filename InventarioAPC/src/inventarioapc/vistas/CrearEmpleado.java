@@ -6,6 +6,11 @@
 package inventarioapc.vistas;
 
 import inventarioapc.controladores.Ventanas;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,6 +24,7 @@ public class CrearEmpleado extends javax.swing.JPanel {
      */
     public CrearEmpleado() {
         initComponents();
+        asignarImagenes();
     }
 
     /**
@@ -42,8 +48,11 @@ public class CrearEmpleado extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(236, 255, 236));
+
+        jPanel1.setBackground(new java.awt.Color(149, 170, 184));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -79,10 +88,9 @@ public class CrearEmpleado extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("AGREGAR EMPLEADO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
 
@@ -94,10 +102,6 @@ public class CrearEmpleado extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -119,7 +123,11 @@ public class CrearEmpleado extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(69, 69, 69)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,26 +154,26 @@ public class CrearEmpleado extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(31, 31, 31)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,13 +181,38 @@ public class CrearEmpleado extends javax.swing.JPanel {
         controladorNavegacion.cambioVentana(10);
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         controladorNavegacion.cambioVentana(10);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_guardarActionPerformed
 
+    private void asignarImagenes(){
+        guardar.setIcon(setIcon("/images/save.png", guardar));
+    }
+    
+    private Icon setLogo(String url, JLabel label){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = label.getWidth();
+        int alto = label.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
+    
+    private Icon setIcon(String url, JButton boton){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

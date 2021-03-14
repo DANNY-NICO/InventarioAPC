@@ -89,8 +89,12 @@ public class CrearProducto extends javax.swing.JPanel {
         ledMarca = new javax.swing.JPanel();
         agregarProducto = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(236, 255, 236));
+
+        jPanel1.setBackground(new java.awt.Color(149, 170, 184));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jPanel2.setBackground(new java.awt.Color(194, 214, 227));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -202,6 +206,7 @@ public class CrearProducto extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("AGREGAR PRODUCTO");
 
+        jPanel3.setBackground(new java.awt.Color(194, 214, 227));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -221,6 +226,7 @@ public class CrearProducto extends javax.swing.JPanel {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(194, 214, 227));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         agregarCategoria.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -282,6 +288,7 @@ public class CrearProducto extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Marca:");
 
+        jPanel5.setBackground(new java.awt.Color(194, 214, 227));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         agregarMarca.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N

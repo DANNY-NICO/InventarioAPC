@@ -6,6 +6,13 @@
 package inventarioapc.vistas;
 
 import inventarioapc.controladores.Ventanas;
+import inventarioapc.controladores.sesion;
+import java.awt.Color;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -17,6 +24,7 @@ public class IniciarSesion extends javax.swing.JPanel {
 
     public inventarioapc.controladores.Ventanas controladorNavegacion;
     public inventarioapc.controladores.Autentificacion controladorAutentificacion;
+    public inventarioapc.controladores.sesion sesion;
     private boolean visible;
     private char punto;
     /**
@@ -27,6 +35,8 @@ public class IniciarSesion extends javax.swing.JPanel {
         visible=false;
         punto = contraseña.getEchoChar();
         controladorAutentificacion = new inventarioapc.controladores.Autentificacion(this);
+        asignarImagenes();
+        ledSesion.setBackground(Color.RED);
     }
 
     /**
@@ -48,8 +58,14 @@ public class IniciarSesion extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         contraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        variable = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        ledSesion = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(236, 255, 236));
+
+        jPanel1.setBackground(new java.awt.Color(149, 170, 184));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         titulo2.setFont(new java.awt.Font("Sitka Display", 3, 36)); // NOI18N
@@ -90,11 +106,26 @@ public class IniciarSesion extends javax.swing.JPanel {
             }
         });
 
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        variable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                variableActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("sesion iniciada:");
+
+        ledSesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout ledSesionLayout = new javax.swing.GroupLayout(ledSesion);
+        ledSesion.setLayout(ledSesionLayout);
+        ledSesionLayout.setHorizontalGroup(
+            ledSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 16, Short.MAX_VALUE)
+        );
+        ledSesionLayout.setVerticalGroup(
+            ledSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,6 +139,15 @@ public class IniciarSesion extends javax.swing.JPanel {
             .addComponent(titulo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ledSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,14 +156,11 @@ public class IniciarSesion extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(contraseña)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGap(42, 42, 42))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGap(42, 42, 42)))
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,29 +184,39 @@ public class IniciarSesion extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(43, 43, 43))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ledSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(190, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addGap(18, 18, 18)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -185,34 +232,80 @@ public class IniciarSesion extends javax.swing.JPanel {
         
         String respuesta = controladorAutentificacion.autentificacion();
         if(respuesta == "aceptado"){
+            sesion.setAutentificado(true);
+            sesion.setUsuario(usuario.getText());
+            limpiar();
             controladorNavegacion.cambioVentana(1);
-        }
-        
+            
+            if(sesion.isAutentificado()){
+                ledSesion.setBackground(Color.GREEN);
+            }else {
+                ledSesion.setBackground(Color.RED);
+            }
+            
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void limpiar(){
+        usuario.setText("");
+        contraseña.setText("");
+    }
+    
+    private void variableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_variableActionPerformed
         if(visible){
             contraseña.setEchoChar(punto);
-            visible = false;        
+            visible = false;  
+            variable.setIcon(setIcon("/images/ojo_closed.png",variable));
         }else {
             contraseña.setEchoChar((char)0);
             visible = true;
+            variable.setIcon(setIcon("/images/ojo_open.png",variable));
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_variableActionPerformed
 
+    private void asignarImagenes(){
+        variable.setIcon(setIcon("/images/ojo_closed.png",variable));
+        logo.setIcon(setLogo("/images/tanko.png", logo));
+    }
+    
+    private Icon setLogo(String url, JLabel label){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = label.getWidth();
+        int alto = label.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
+    
+    private Icon setIcon(String url, JButton boton){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel ledSesion;
+    private javax.swing.JLabel logo;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo2;
     private javax.swing.JTextField usuario;
+    private javax.swing.JButton variable;
     // End of variables declaration//GEN-END:variables
 
     public Ventanas getControladorNavegacion() {
@@ -230,4 +323,13 @@ public class IniciarSesion extends javax.swing.JPanel {
     public JTextField getUsuario() {
         return usuario;
     }
+
+    public sesion getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(sesion sesion) {
+        this.sesion = sesion;
+    }
+    
 }

@@ -29,7 +29,6 @@ public class Personas {
     private inventarioapc.vistas.Proveedores proveedor;
     private inventarioapc.vistas.Administrador administrador;
     private inventarioapc.controladores.Productos productos;
-    private DefaultTableModel modelo;
     Connection conn = null;
     Statement st;
     PreparedStatement ps;
@@ -52,8 +51,8 @@ public class Personas {
         this.proveedor = proveedor;
         this.administrador = administrador;
         this.productos = producto;
-        modelo = new DefaultTableModel();
         cargarTablaProveedor();
+        cargarTablaEmpleado();
     }
     
     //EMPLEADO
@@ -82,6 +81,47 @@ public class Personas {
             System.err.println(e);
         }
     }
+
+    
+    public void cargarTablaEmpleado(){
+        DefaultTableModel modelo = (DefaultTableModel) empleado.getTable().getModel();
+                 
+        modelo.addColumn("Empesa");
+        modelo.addColumn("Contacto");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Productos");
+        
+        
+        String info[] = new String[5];
+        info[0]="Prueba";
+        info[1]="3002582536";
+        info[2]="prueba@gmail.com";
+        info[3]="15000";
+        info[4]="chapa";
+        
+        modelo.addRow(info);
+        proveedor.getTable().setModel(modelo);
+    }
+    
+    public void eliminarFilaEmpleado(){
+        DefaultTableModel modelo = (DefaultTableModel) empleado.getTable().getModel();
+        int i = empleado.getTable().getSelectedRow();
+        
+        if(i>=0){
+            int aux = JOptionPane.showConfirmDialog(null,"¿Seguro que desea eliminarlo?");
+            if(aux==0){
+                modelo.removeRow(i);
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione fila");
+        }
+    }
+    
+        
+    public void listarEmpleado(){
+        
+    }
     
     //PROVEEDOR
     public void crearProveedor(){
@@ -97,6 +137,8 @@ public class Personas {
     }
     
     public void agregarFilaProveedor(Proveedor entrante){
+        DefaultTableModel modelo = (DefaultTableModel) proveedor.getTable().getModel();
+        
         String info[] = new String[5];
         info[0]=""+entrante.getEmpresa();
         info[1]=""+entrante.getContacto();
@@ -110,7 +152,12 @@ public class Personas {
     }
     
     public void cargarTablaProveedor(){
-                 
+        DefaultTableModel modelo = (DefaultTableModel) proveedor.getTable().getModel();
+        
+        for (int i = 0; i < 10; i++) {
+            
+        }
+        
         modelo.addColumn("Empesa");
         modelo.addColumn("Contacto");
         modelo.addColumn("Correo");
@@ -129,13 +176,22 @@ public class Personas {
     }
     
     public void eliminarFilaProveedor(){
+        DefaultTableModel modelo = (DefaultTableModel) proveedor.getTable().getModel();
         int i = proveedor.getTable().getSelectedRow();
         
         if(i>=0){
-            modelo.removeRow(i);
+            int aux = JOptionPane.showConfirmDialog(null,"¿Seguro que desea eliminarlo?");
+            if(aux==0){
+                modelo.removeRow(i);
+            }
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
+    }
+    
+        
+    public void listarProveedor(){
+        
     }
         
     //GENERAL

@@ -49,6 +49,7 @@ public class DetalleProducto extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jButton2.setText("+");
 
+        setBackground(new java.awt.Color(236, 255, 236));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N

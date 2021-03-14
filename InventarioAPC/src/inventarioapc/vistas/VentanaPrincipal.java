@@ -22,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private inventarioapc.controladores.Productos controladorProducto;
     private inventarioapc.controladores.Personas controladorPersonas;
     private inventarioapc.controladores.Cajero controladorCajero;
+    private inventarioapc.controladores.sesion contradorSesion;
     
     // VENTANAS
     private inventarioapc.vistas.IniciarSesion iniciarSesion;
@@ -62,6 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorProducto = new inventarioapc.controladores.Productos(crearProducto, inventario, administrador, cajero);
         controladorPersonas = new inventarioapc.controladores.Personas(crearEmpleado, empleados, crearProveedor, proveedor, administrador, controladorProducto);
         controladorCajero = new inventarioapc.controladores.Cajero(cajero, facturaDetalle, factura, controladorProducto, controladorPersonas);
+        contradorSesion = new inventarioapc.controladores.sesion();
         
         //ASIGNACION DE CONTROLADOR DE VENTANAS
         proveedor.setControladorNavegacion(controladorVentanas);
@@ -82,6 +84,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         crearProveedor.setControladorPersonas(controladorPersonas);
         administrador.setControladorProductos(controladorProducto);
         cajero.setControladorProdcutos(controladorProducto);
+        empleados.setControladorPersonas(controladorPersonas);
+        
+        //ASIGNACION DE CONTROLADOR DE SESION
+        iniciarSesion.setSesion(contradorSesion);
         
         botones1.setControladorVentana(controladorVentanas);
     }
@@ -109,20 +115,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         contenedor.setName(""); // NOI18N
         contenedor.setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBackground(new java.awt.Color(236, 255, 236));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(909, Short.MAX_VALUE)
+                .addComponent(botones1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(894, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(botones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(botones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         contenedor.add(jPanel2, java.awt.BorderLayout.PAGE_START);

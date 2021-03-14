@@ -6,6 +6,11 @@
 package inventarioapc.vistas;
 
 import inventarioapc.controladores.Ventanas;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -23,6 +28,7 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
     public CajeroFacturaDetalle(inventarioapc.vistas.CajeroFactura facturaFinal) {
         initComponents();
         this.facturaFinal = facturaFinal;
+        asignarImagenes();
     }
 
     /**
@@ -49,12 +55,15 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
         producto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
+        aceptar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         total = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        guardarPrecio = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(236, 255, 236));
+
+        jPanel1.setBackground(new java.awt.Color(149, 170, 184));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -105,19 +114,17 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Aceptar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        aceptar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                aceptarActionPerformed(evt);
             }
         });
 
@@ -126,11 +133,10 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
 
         total.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton5.setText("Cambiar precio");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        guardarPrecio.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        guardarPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                guardarPrecioActionPerformed(evt);
             }
         });
 
@@ -169,24 +175,23 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(102, 102, 102))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addGap(114, 114, 114))))
+                                .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(543, 543, 543)
+                        .addComponent(guardarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(102, 102, 102))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(471, 471, 471)
+                .addGap(200, 200, 200)
+                .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(380, 380, 380)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -200,9 +205,9 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(vtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,24 +220,22 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
                             .addComponent(vfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
+                        .addComponent(guardarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(48, 48, 48)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -240,21 +243,21 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         
         facturaFinal.getCliente().setText(vcliente.getText());
         facturaFinal.getDocumento().setText(vdocumento.getText());
@@ -265,7 +268,8 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
         facturaFinal.getTable().setModel(jTable1.getModel());
         
         controladorNavegacion.cambioVentana(3);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        limpiar();
+    }//GEN-LAST:event_aceptarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int selected = jTable1.getSelectedRow();
@@ -275,15 +279,60 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void guardarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarPrecioActionPerformed
         int selected = jTable1.getSelectedRow();
-        jTable1.setValueAt(precio.getText(), selected, 3);
-        sumaTotal();
-    }//GEN-LAST:event_jButton5ActionPerformed
+        if(selected>=0){
+            jTable1.setValueAt(precio.getText(), selected, 3);
+            sumaTotal();    
+        }
+    }//GEN-LAST:event_guardarPrecioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         controladorNavegacion.cambioVentana(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        limpiar();
+    }//GEN-LAST:event_cancelarActionPerformed
+    
+    private void limpiar(){
+        vcliente.setText("");
+        vtelefono.setText("");
+        vdocumento.setText("");
+        vfecha.setText("");
+        precio.setText("");
+        total.setText("");
+        producto.setText("");
+        int aux = jTable1.getRowCount();
+        for (int i = 0; i < aux; i++) {
+            jTable1.remove(i);
+        }
+    }
+    
+    private void asignarImagenes(){
+        aceptar.setIcon(setIcon("/images/aceptar.png", aceptar));
+        cancelar.setIcon(setIcon("/images/stop.png", cancelar));
+        guardarPrecio.setIcon(setIcon("/images/save.png", guardarPrecio));
+    }
+    
+    private Icon setLogo(String url, JLabel label){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = label.getWidth();
+        int alto = label.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
+    
+    private Icon setIcon(String url, JButton boton){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
     
     public void sumaTotal (){
         int total = 0;
@@ -294,9 +343,9 @@ public class CajeroFacturaDetalle extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton aceptar;
+    private javax.swing.JButton cancelar;
+    private javax.swing.JButton guardarPrecio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

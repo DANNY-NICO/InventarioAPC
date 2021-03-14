@@ -3,6 +3,13 @@
 package inventarioapc.vistas;
 import inventarioapc.controladores.Productos;
 import inventarioapc.controladores.Ventanas;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 /**
@@ -16,6 +23,7 @@ public class Inventario extends javax.swing.JPanel {
     
     public Inventario() {
         initComponents();
+        asignarImagenes();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,16 +36,19 @@ public class Inventario extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         buscarCodigo = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        crear = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(236, 255, 236));
+
+        jPanel1.setBackground(new java.awt.Color(149, 170, 184));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jPanel3.setBackground(new java.awt.Color(194, 214, 227));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         buscarNombrePro.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -49,14 +60,6 @@ public class Inventario extends javax.swing.JPanel {
 
         buscarCodigo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setText("Buscar Producto");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -64,32 +67,28 @@ public class Inventario extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buscarNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(36, 36, 36)
+                        .addComponent(buscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(buscarNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buscarNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(buscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
         );
 
         tablaDatos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -117,29 +116,27 @@ public class Inventario extends javax.swing.JPanel {
             tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(50);
         }
 
+        jPanel2.setBackground(new java.awt.Color(194, 214, 227));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Eliminar Producto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Crear Producto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        crear.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                crearActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton5.setText("Editar Producto");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        editar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                editarActionPerformed(evt);
             }
         });
 
@@ -148,23 +145,23 @@ public class Inventario extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(crear, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -203,49 +200,81 @@ public class Inventario extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         controladorNavegacion.cambioVentana(4);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_crearActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controlador.eliminarFila();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String[] producto = controlador.buscarProducto(""+tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 0));
-        for (int i = 0; i < producto.length; i++) {
-            System.out.println(producto[i]);
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        
+        if(tablaDatos.getSelectedRow()>=0){
+            int i = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminarlo?");
+            if(i==0){
+                controlador.eliminarFila();
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione fila");
         }
-        controlador.cargarEditar(producto);
-        controladorNavegacion.cambioVentana(4);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_eliminarActionPerformed
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        if(tablaDatos.getSelectedRow()>=0){
+            String[] producto = controlador.buscarProducto(""+tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 0));
+            for (int i = 0; i < producto.length; i++) {
+                System.out.println(producto[i]);
+            }
+            controlador.cargarEditar(producto);
+            controladorNavegacion.cambioVentana(4);
+        }
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void asignarImagenes(){
+        crear.setIcon(setIcon("/images/crear.png", crear));
+        editar.setIcon(setIcon("/images/editar.png", editar));
+        eliminar.setIcon(setIcon("/images/caneca.png", eliminar));
+    }
+    
+    private Icon setLogo(String url, JLabel label){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = label.getWidth();
+        int alto = label.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
+    
+    private Icon setIcon(String url, JButton boton){
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+        
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+        
+        return imagen;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscarCodigo;
     private javax.swing.JTextField buscarNombrePro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton crear;
+    private javax.swing.JButton editar;
+    private javax.swing.JButton eliminar;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

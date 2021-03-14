@@ -310,8 +310,6 @@ public class Productos {
             
     public void cargarTabla(){
          
-        
-        
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Stock local");
@@ -326,6 +324,13 @@ public class Productos {
         cajero.getTable().setModel(modelo);
     }
     
+    public void actualizarTabla(){
+        listar();
+        
+        inventario.getTable().setModel(modelo);
+        adminitrador.getTabla().setModel(modelo);
+        cajero.getTable().setModel(modelo);
+    }
 
     public void eliminarFila() {
         int i = inventario.getTable().getSelectedRow();
