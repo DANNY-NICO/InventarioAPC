@@ -84,7 +84,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         crearProveedor.setControladorPersonas(controladorPersonas);
         administrador.setControladorProductos(controladorProducto);
         cajero.setControladorProdcutos(controladorProducto);
+        
+        //ASIGNACION DE CONTROLADOR DE PERSONAS
         empleados.setControladorPersonas(controladorPersonas);
+        crearEmpleado.setControladorPersonas(controladorPersonas);
         
         //ASIGNACION DE CONTROLADOR DE SESION
         iniciarSesion.setSesion(contradorSesion);

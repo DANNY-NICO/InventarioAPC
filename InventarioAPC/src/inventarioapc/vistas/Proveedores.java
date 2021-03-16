@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -50,6 +51,7 @@ public class Proveedores extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         eliminar = new javax.swing.JButton();
+        editarProveedor = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(236, 255, 236));
 
@@ -108,15 +110,7 @@ public class Proveedores extends javax.swing.JPanel {
 
         jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Empresa", "Contacto", "Correo", "Precio", "Productos"
-            }
+
         ));
         jTable1.setRowHeight(40);
         jTable1.setRowMargin(2);
@@ -127,6 +121,14 @@ public class Proveedores extends javax.swing.JPanel {
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarActionPerformed(evt);
+            }
+        });
+
+        editarProveedor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        editarProveedor.setToolTipText("");
+        editarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProveedorActionPerformed(evt);
             }
         });
 
@@ -145,7 +147,9 @@ public class Proveedores extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(420, 420, 420)
+                .addGap(320, 320, 320)
+                .addComponent(editarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
@@ -159,7 +163,9 @@ public class Proveedores extends javax.swing.JPanel {
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -189,8 +195,18 @@ public class Proveedores extends javax.swing.JPanel {
         controladorPersonas.eliminarFilaProveedor();
     }//GEN-LAST:event_eliminarActionPerformed
 
+    private void editarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProveedorActionPerformed
+        if(jTable1.getSelectedRow()>=0){
+            controladorPersonas.cargarEditarProveedor();
+            controladorNavegacion.cambioVentana(9);
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un proveedor");
+        }
+    }//GEN-LAST:event_editarProveedorActionPerformed
+
     private void asignarImagenes(){
         eliminar.setIcon(setIcon("/images/caneca.png", eliminar));
+        editarProveedor.setIcon(setIcon("/images/editar.png", editarProveedor));
     }
     
     private Icon setLogo(String url, JLabel label){
@@ -210,12 +226,13 @@ public class Proveedores extends javax.swing.JPanel {
         int ancho = boton.getWidth();
         int alto = boton.getHeight();
         
-        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
         
         return imagen;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editarProveedor;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;

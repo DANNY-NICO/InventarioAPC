@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -49,6 +50,7 @@ public class Empleados extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         eliminarEmpleado = new javax.swing.JButton();
+        editarEmpleado = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(236, 255, 236));
 
@@ -102,15 +104,7 @@ public class Empleados extends javax.swing.JPanel {
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Empresa", "Contacto", "Correo", "Precio", "Productos"
-            }
+
         ));
         jTable1.setRowHeight(40);
         jTable1.setRowMargin(2);
@@ -119,6 +113,12 @@ public class Empleados extends javax.swing.JPanel {
         eliminarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        editarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEmpleadoActionPerformed(evt);
             }
         });
 
@@ -137,6 +137,8 @@ public class Empleados extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
                         .addComponent(eliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92))))
         );
@@ -146,7 +148,8 @@ public class Empleados extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(eliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -176,8 +179,18 @@ public class Empleados extends javax.swing.JPanel {
         controladorPersonas.eliminarFilaEmpleado();
     }//GEN-LAST:event_eliminarEmpleadoActionPerformed
 
+    private void editarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEmpleadoActionPerformed
+        if(jTable1.getSelectedRow()>=0){
+            controladorPersonas.cargarEditarEmpleado();
+            controladorNavegacion.cambioVentana(8);
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un proveedor");
+        }
+    }//GEN-LAST:event_editarEmpleadoActionPerformed
+
     private void asignarImagenes(){
         eliminarEmpleado.setIcon(setIcon("/images/caneca.png", eliminarEmpleado));
+        editarEmpleado.setIcon(setIcon("/images/editar.png", editarEmpleado));
     }
     
     private Icon setLogo(String url, JLabel label){
@@ -197,12 +210,13 @@ public class Empleados extends javax.swing.JPanel {
         int ancho = boton.getWidth();
         int alto = boton.getHeight();
         
-        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+        ImageIcon imagen = new ImageIcon(icon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
         
         return imagen;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editarEmpleado;
     private javax.swing.JButton eliminarEmpleado;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;

@@ -13,7 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import Atxy2k.CustomTextField.RestrictedTextField;
 
 /**
  *
@@ -23,12 +25,15 @@ public class CrearProveedor extends javax.swing.JPanel {
 
     public inventarioapc.controladores.Personas controladorPersonas;
     public inventarioapc.controladores.Ventanas controladorNavegacion;
+    public String codigoEdit;
+    public RestrictedTextField limiteContacto;
     /**
      * Creates new form CrearEmpleado
      */
     public CrearProveedor() {
         initComponents();
         asignarImagenes();
+        codigoEdit="-1";
     }
 
     /**
@@ -45,16 +50,12 @@ public class CrearProveedor extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         empresa = new javax.swing.JTextField();
         contacto = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
-        precio = new javax.swing.JTextField();
-        codigo = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        productos = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        descripcion = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(236, 255, 236));
 
@@ -71,10 +72,7 @@ public class CrearProveedor extends javax.swing.JPanel {
         jLabel3.setText("Correo:");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setText("Precio:");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setText("Codigo:");
+        jLabel4.setText("Descripcion:");
 
         empresa.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
@@ -82,29 +80,21 @@ public class CrearProveedor extends javax.swing.JPanel {
 
         correo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        precio.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
-        codigo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoActionPerformed(evt);
-            }
-        });
-
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setText("Producto:");
-
-        productos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        productos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setText("AGREGAR PROVEEDOR");
+
+        descripcion.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descripcionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,6 +102,9 @@ public class CrearProveedor extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(250, Short.MAX_VALUE)
+                        .addComponent(jLabel7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -126,18 +119,12 @@ public class CrearProveedor extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(codigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(correo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(precio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(productos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(250, Short.MAX_VALUE)
-                        .addComponent(jLabel7)))
+                                    .addComponent(descripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21)
                 .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -151,33 +138,21 @@ public class CrearProveedor extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -198,15 +173,31 @@ public class CrearProveedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoActionPerformed
-
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        controladorPersonas.crearProveedor();
-        controladorNavegacion.cambioVentana(10);
+        if(Integer.parseInt(codigoEdit)>=0){
+            controladorPersonas.editarProveedor();
+            controladorPersonas.listarProveedor();
+            controladorNavegacion.cambioVentana(10);
+        }else {
+            controladorPersonas.crearProveedor();
+            controladorPersonas.listarProveedor();
+            controladorNavegacion.cambioVentana(10);
+        }
+        limpiar();
     }//GEN-LAST:event_guardarActionPerformed
 
+    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descripcionActionPerformed
+
+    private void limpiar(){
+        empresa.setText("");
+        contacto.setText("");
+        correo.setText("");
+        descripcion.setText("");
+        codigoEdit="-1";
+    }
+    
     private void asignarImagenes(){
         guardar.setIcon(setIcon("/images/save.png", guardar));
     }
@@ -232,23 +223,28 @@ public class CrearProveedor extends javax.swing.JPanel {
         
         return imagen;
     }
+    
+    private void setLimite(){
+        
+        limiteContacto.setLimit(11);
+        limiteContacto.setOnlyNums(true);
+        
+        RestrictedTextField limiteDescripcion = new RestrictedTextField(descripcion);
+        limiteDescripcion.setLimit(30);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField codigo;
     private javax.swing.JTextField contacto;
     private javax.swing.JTextField correo;
+    private javax.swing.JTextField descripcion;
     private javax.swing.JTextField empresa;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField precio;
-    private javax.swing.JComboBox<String> productos;
     // End of variables declaration//GEN-END:variables
 
     public Ventanas getControladorNavegacion() {
@@ -263,8 +259,8 @@ public class CrearProveedor extends javax.swing.JPanel {
         this.controladorPersonas = controladorPersonas;
     }
 
-    public JTextField getCodigo() {
-        return codigo;
+    public JTextField getDescripcion() {
+        return descripcion;
     }
 
     public JTextField getContacto() {
@@ -278,14 +274,4 @@ public class CrearProveedor extends javax.swing.JPanel {
     public JTextField getEmpresa() {
         return empresa;
     }
-
-    public JTextField getPrecio() {
-        return precio;
-    }
-
-    public JComboBox<String> getProductos() {
-        return productos;
-    }
-    
-    
 }
